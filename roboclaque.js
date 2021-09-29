@@ -2,7 +2,7 @@
 const { decode } = require('html-entities');
 const utf8 = require("utf8");
 
-const TIMER = 600000; // 10 minutes
+const TIMER = 60000; // 10 minutes
 
 const fs = require('fs');
 const readline = require('readline');
@@ -22,13 +22,13 @@ const TOKEN_PATH = 'token.json';
 client.once('ready', () => {
   console.log('Roboclaqué is online.');
   client.on('messageCreate', message => {
-    if(message.member.id === "197054173512990720")
-      message.react("<:very_yum:889548174384046220>");
     if (message.channel.name.includes('wtf')) {
       if (message.content.includes(":samyyyyy:"))
         message.reply('<@116222636849102853>');
       if (message.content.includes(":florent_desespoir:"))
         message.reply('<@197054173512990720>');
+      if (message.content.includes("djjslmajdldbdjs"))
+        message.reply("<:monke:885801180142395412> <:monke:885801180142395412> <:monke:885801180142395412>");
       if (message.content.includes(":mondam:") || message.content.includes(":monke:"))
         message.reply('<@342589958160384002>');
       m = message.content.toLowerCase();
@@ -118,7 +118,8 @@ async function waitMessage(gmail, id) {
 }
 
 function getMessages(auth) {
-  const channel = client.channels.cache.find(channel => channel.name.includes("roboclaqué"));
+  const channel = client.channels.cache.get('882280481389961266'); //roboclaqué
+  var channelProf = undefined;
   //const channel = msg.guild.channels.resolve(channelID);
   const gmail = google.gmail({ version: 'v1', auth });
   gmail.users.messages.list({
@@ -152,8 +153,38 @@ function getMessages(auth) {
             });
           }
           var lowerBody = body.toLowerCase();
-          if (lowerBody.includes('polypoint') || lowerBody.includes('poly-point') || lowerBody.includes('point citoyen') || lowerBody.includes('points citoyen')) {
-            channel.send(`Nouveau message de ${sender} mentionnant les poly-points ! <:rainbow:768468995161718785>`);
+          var lowerSender = sender.toLowerCase();
+          if(lowerSender.includes("didier.donsez")){
+            channelProf = client.channels.cache.get('885464599388897310'); //bdd
+          } else if (lowerSender.includes('jean-francois.monin')){
+            channelProf = client.channels.cache.get('885793609327206442'); //ocaml
+          } else if (lowerSender.includes('jonatha.anselmi')){
+            channelProf = client.channels.cache.get("885432141108879400"); //proba
+          } else if(lowerSender.includes('fabienne.boyer')){
+            channelProf = client.channels.cache.get("885773396510654484"); //proc-concurrente
+          } else if(lowerSender.includes("nadia.brauner")){
+            channelProf = client.channels.cache.get("887300247133495296"); //recherche-op
+          } else if(lowerSender.includes("renaud.blanch")){
+            channelProf = client.channels.cache.get("887587902530396250"); //interaction homme machine
+          } else if(lowerSender.includes("valentin.garnero")){
+            channelProf = client.channels.cache.get("889437763412320277"); //complexité algo
+          } else if(lowerSender.includes("olivier.richard")){
+            channelProf = client.channels.cache.get("889521322504368188"); //réseaux
+          }
+          if (channelProf != undefined) { //prof
+            channelProf.send(`Nouveau message de ${sender} ! <:rainbow:768468995161718785>`);
+            body = decode(body);
+            textToImage.generate(utf8.decode(body), { maxWidth: 1920, fontSize: 32 }).then(function (dataUri) {
+              const sfbuff = new Buffer.from(dataUri.split(",")[1], "base64");
+              channelProf.send({
+                content: `Voici son message :⁣`, files: [
+                  { attachment: sfbuff }
+                ]
+              });
+            });
+          }
+          if (lowerBody.includes('polypoint') || lowerBody.includes('poly-point') || lowerBody.includes('point citoyen') || lowerBody.includes('points citoyen')) { //polypoint
+            channel.send(`Nouveau message de ${sender} mentionnant les poly-points ! <:rainbow:768468995161718785>\n<@&889552215214260244>`);
             body = decode(body);
             textToImage.generate(utf8.decode(body), { maxWidth: 1920, fontSize: 32 }).then(function (dataUri) {
               const sfbuff = new Buffer.from(dataUri.split(",")[1], "base64");
@@ -165,6 +196,7 @@ function getMessages(auth) {
             });
           }
           gmail.users.messages.trash({ userId: 'me', id: m.id });
+          console.log("message trashed");
         });
       });
     } else {
@@ -172,4 +204,4 @@ function getMessages(auth) {
     }
   });
 }
-client.login('haha nope');
+client.login('haha lol non');
