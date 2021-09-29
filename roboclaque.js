@@ -170,6 +170,8 @@ function getMessages(auth) {
             channelProf = client.channels.cache.get("889437763412320277"); //complexité algo
           } else if(lowerSender.includes("olivier.richard")){
             channelProf = client.channels.cache.get("889521322504368188"); //réseaux
+          } else if(lowerSender.includes("nicolas.palix")){
+            channelProf = client.channels.cache.get('882280481389961266');
           }
           if (channelProf != undefined) { //prof
             channelProf.send(`Nouveau message de ${sender} ! <:rainbow:768468995161718785>`);
