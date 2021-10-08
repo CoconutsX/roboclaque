@@ -22,6 +22,8 @@ const TOKEN_PATH = 'token.json';
 client.once('ready', () => {
   console.log('Roboclaqué is online.');
   client.on('messageCreate', message => {
+    if (message.content === "!pat")
+      message.reply("UwU ~❤️");
     if (message.channel.name.includes('wtf')) {
       if (message.content.includes(":samyyyyy:"))
         message.reply('<@116222636849102853>');
@@ -172,7 +174,8 @@ function getMessages(auth) {
             channelProf = client.channels.cache.get("889521322504368188"); //réseaux
           } else if(lowerSender.includes("nicolas.palix")){
             channelProf = client.channels.cache.get('882280481389961266');
-          }
+          } else if(lowerSender.includes("anais.allemand"))
+            channelProf = client.channels.cache.get('896147703770263552');
           if (channelProf != undefined) { //prof
             channelProf.send(`Nouveau message de ${sender} ! <:rainbow:768468995161718785>`);
             body = decode(body);
@@ -206,4 +209,4 @@ function getMessages(auth) {
     }
   });
 }
-client.login('haha lol non');
+client.login('haha nope');
