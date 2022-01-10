@@ -1,0 +1,32 @@
+{
+    "ratio_rate": 1000,
+    "mail_timer": 180,
+    "reaction_channel": "word-in-channel-name",
+    "reactions": {
+        "global": [
+            {
+                "content": "text-in-message",
+                "response": "Text to send in response",
+                "type": "response"
+            },
+            {
+                "content": "react-with-emoji-on-message",
+                "response": "👍",
+                "type": "react"
+            }
+        ],
+        "channel": [
+            {
+                "content": "word-found-in-reaction-channel",
+                "response": "Text to send",
+                "type": "reply"
+            }
+        ]
+    },
+    "email": [
+        {
+            "sender": "email.sender",
+            "channel_id": "where to send the email content"
+        }
+    ]
+}
