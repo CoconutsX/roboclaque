@@ -1,4 +1,7 @@
 #!/usr/bin/node
+
+//Merci à Samy WAGNER pour son travail de factorisation du code.
+
 const { decode } = require('html-entities');
 const utf8 = require("utf8");
 
