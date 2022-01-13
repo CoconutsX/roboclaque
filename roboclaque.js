@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-//Merci à Samy WAGNER pour son travail de factorisation du code.
+//Merci à TheRamsWay (https://github.com/TheRamsWay) pour son travail de factorisation du code.
 
 const { decode } = require('html-entities');
 const utf8 = require("utf8");
