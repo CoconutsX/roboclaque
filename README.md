@@ -3,4 +3,4 @@ Bot Discord ayant pour objectif d'informer mes amis et moi-même des mails impor
 Fonctionne sous nodeJS.
 Récupère les mails via Gmail.
 
-Merci à Samy WAGNER pour son travail de factorisation du code.
+Merci à TheRamsWay (https://github.com/TheRamsWay) pour son travail de factorisation du code.
